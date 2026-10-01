@@ -79,11 +79,20 @@ the `__SWORKSPACE_` prefix; user-configurable settings use `SWORKSPACE_`.
 
 ## Install
 
-### From GitHub releases (via mise)
+### Using mise
 
-```toml
-[tools]
-"github:tbeijen/sworkspace" = "0.1"
+Install the latest eligible release globally:
+
+```sh
+mise use -g github:TBeijen/sworkspace
+```
+
+Mise defaults to a seven-day minimum release age as a supply-chain safeguard.
+A newly published release may therefore not appear immediately. Only bypass
+this protection when you trust the latest release:
+
+```sh
+MISE_MINIMUM_RELEASE_AGE=0s mise use -g github:TBeijen/sworkspace@latest
 ```
 
 ### From source
