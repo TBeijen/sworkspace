@@ -97,8 +97,9 @@ go install github.com/tbeijen/sworkspace@latest
 ```sh
 git clone https://github.com/tbeijen/sworkspace.git
 cd sworkspace
-go build -o sworkspace .
-cp sworkspace ~/.local/bin/
+mkdir -p bin
+go build -o bin/sworkspace .
+cp bin/sworkspace ~/.local/bin/
 ```
 
 ## Shell support

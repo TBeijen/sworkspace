@@ -28,4 +28,4 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - run: go build -o sworkspace .
+      - run: mkdir -p bin && go build -o bin/sworkspace .

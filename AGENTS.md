@@ -12,7 +12,8 @@ mise (`mise activate zsh`) and fnox (`fnox activate zsh`).
 ## Building
 
 ```sh
-go build -o sworkspace .
+mkdir -p bin
+go build -o bin/sworkspace .
 ```
 
 ## Testing
