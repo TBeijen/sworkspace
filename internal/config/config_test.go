@@ -15,7 +15,7 @@ func testdataRoot(t *testing.T) string {
 
 func withRoot(t *testing.T) {
 	t.Helper()
-	t.Setenv("WORKSPACES_ROOT", testdataRoot(t))
+	t.Setenv("SWORKSPACE_ROOT", testdataRoot(t))
 }
 
 func TestLoadEnv(t *testing.T) {
@@ -193,7 +193,7 @@ func TestListClusters(t *testing.T) {
 }
 
 func TestRootDefault(t *testing.T) {
-	os.Unsetenv("WORKSPACES_ROOT")
+	os.Unsetenv("SWORKSPACE_ROOT")
 	root := Root()
 	home, _ := os.UserHomeDir()
 	expected := filepath.Join(home, "workspaces")
@@ -203,7 +203,7 @@ func TestRootDefault(t *testing.T) {
 }
 
 func TestRootEnvOverride(t *testing.T) {
-	t.Setenv("WORKSPACES_ROOT", "/custom/path")
+	t.Setenv("SWORKSPACE_ROOT", "/custom/path")
 	if got := Root(); got != "/custom/path" {
 		t.Errorf("Root() = %q, want %q", got, "/custom/path")
 	}

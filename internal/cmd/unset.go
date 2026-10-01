@@ -7,7 +7,7 @@ import (
 )
 
 func Unset() error {
-	vars := os.Getenv("__WS_VARS")
+	vars := os.Getenv("__SWORKSPACE_VARS")
 	if vars == "" {
 		return nil
 	}
@@ -19,8 +19,8 @@ func Unset() error {
 		}
 	}
 
-	fmt.Println("unset __WS_VARS")
-	fmt.Println("unset __WS_ACTIVE")
+	fmt.Println("unset __SWORKSPACE_VARS")
+	fmt.Println("unset __SWORKSPACE_ACTIVE")
 
 	return nil
 }

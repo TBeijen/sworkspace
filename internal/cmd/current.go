@@ -6,7 +6,7 @@ import (
 )
 
 func Current() error {
-	active := os.Getenv("__WS_ACTIVE")
+	active := os.Getenv("__SWORKSPACE_ACTIVE")
 	if active == "" {
 		fmt.Println("no workspace active")
 		return nil

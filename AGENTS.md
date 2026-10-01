@@ -1,9 +1,9 @@
-# workspace
+# sworkspace
 
 ## What this is
 
 A Go CLI that outputs shell commands for workspace environment switching.
-Binary name: `workspace`. User-facing shell function: `sw`.
+Binary name: `sworkspace`. User-facing shell function: `sw`.
 
 The binary never modifies the shell directly. It prints export/unset statements
 to stdout; the shell function evals them. This is the same pattern used by
@@ -12,7 +12,7 @@ mise (`mise activate zsh`) and fnox (`fnox activate zsh`).
 ## Building
 
 ```sh
-go build -o workspace .
+go build -o sworkspace .
 ```
 
 ## Testing
@@ -27,11 +27,11 @@ go test ./...
 main.go              # CLI entry, os.Args dispatch to cmd/*
 internal/
   cmd/
-    activate.go      # `workspace activate zsh` — emit shell function + completion
-    set.go           # `workspace set <client> <env> <role> [cluster]` — emit exports
-    unset.go         # `workspace unset` — emit unsets based on __WS_VARS
-    ls.go            # `workspace ls` — list workspaces from filesystem
-    current.go       # `workspace current` — print __WS_ACTIVE
+    activate.go      # `sworkspace activate zsh` — emit shell function + completion
+    set.go           # `sworkspace set <client> <env> <role> [cluster]` — emit exports
+    unset.go         # `sworkspace unset` — emit unsets based on __SWORKSPACE_VARS
+    ls.go            # `sworkspace ls` — list workspaces from filesystem
+    current.go       # `sworkspace current` — print __SWORKSPACE_ACTIVE
   config/
     config.go        # TOML parsing, workspace discovery, path resolution
   shell/
@@ -42,10 +42,10 @@ testdata/
 
 ## Design principles
 
-- The binary is stateless. All state lives in env vars (`__WS_VARS`, `__WS_ACTIVE`).
+- The binary is stateless. All state lives in env vars (`__SWORKSPACE_VARS`, `__SWORKSPACE_ACTIVE`).
 - Output is plain shell commands, one per line. No interactive prompts, no TUI.
 - Config files are TOML with a single `[env]` section. Keep the format minimal.
-- Workspace root is `$WORKSPACES_ROOT` or `~/workspaces`.
+- Workspace root is `$SWORKSPACE_ROOT` or `~/workspaces`.
 - No CLI framework (cobra, etc). Subcommand dispatch via os.Args is sufficient.
 
 ## Workspace directory structure
@@ -89,4 +89,4 @@ AWS_PROFILE = "acme-staging-ad"
 
 - Hooks (`[hooks]` section in config): activate/deactivate commands.
 - Bash shell support.
-- `workspace completions zsh` as a standalone subcommand.
+- `sworkspace completions zsh` as a standalone subcommand.

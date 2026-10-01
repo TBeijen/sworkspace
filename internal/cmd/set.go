@@ -5,12 +5,12 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/tbeijen/workspace/internal/config"
+	"github.com/tbeijen/sworkspace/internal/config"
 )
 
 func Set(args []string) error {
 	if len(args) < 3 {
-		return fmt.Errorf("usage: workspace set <client> <env> <role> [cluster]")
+		return fmt.Errorf("usage: sworkspace set <client> <env> <role> [cluster]")
 	}
 
 	client, env, role := args[0], args[1], args[2]
@@ -35,8 +35,8 @@ func Set(args []string) error {
 		fmt.Printf("export %s=%q\n", k, envVars[k])
 	}
 
-	fmt.Printf("export __WS_VARS=%q\n", strings.Join(keys, ","))
-	fmt.Printf("export __WS_ACTIVE=%q\n", formatActive(client, env, role))
+	fmt.Printf("export __SWORKSPACE_VARS=%q\n", strings.Join(keys, ","))
+	fmt.Printf("export __SWORKSPACE_ACTIVE=%q\n", formatActive(client, env, role))
 
 	return nil
 }

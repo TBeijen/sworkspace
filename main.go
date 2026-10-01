@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tbeijen/workspace/internal/cmd"
+	"github.com/tbeijen/sworkspace/internal/cmd"
 )
 
 var version = "dev"
@@ -32,19 +32,19 @@ func main() {
 	case "--help", "-h":
 		usage()
 	default:
-		fmt.Fprintf(os.Stderr, "workspace: unknown command %q\n", os.Args[1])
+		fmt.Fprintf(os.Stderr, "sworkspace: unknown command %q\n", os.Args[1])
 		usage()
 		os.Exit(1)
 	}
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "workspace: %s\n", err)
+		fmt.Fprintf(os.Stderr, "sworkspace: %s\n", err)
 		os.Exit(1)
 	}
 }
 
 func usage() {
-	fmt.Fprint(os.Stderr, `Usage: workspace <command> [args]
+	fmt.Fprint(os.Stderr, `Usage: sworkspace <command> [args]
 
 Commands:
   activate <shell>                        Emit shell integration (zsh)
@@ -55,6 +55,6 @@ Commands:
   version                                 Print version
 
 Environment:
-  WORKSPACES_ROOT    Workspace directory (default: ~/workspaces)
+  SWORKSPACE_ROOT    Workspace directory (default: ~/workspaces)
 `)
 }

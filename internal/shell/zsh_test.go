@@ -10,8 +10,8 @@ func TestZshActivateContainsShellFunction(t *testing.T) {
 
 	mustContain := []string{
 		"sw()",
-		"command workspace set",
-		"command workspace unset",
+		"command sworkspace set",
+		"command sworkspace unset",
 		"eval",
 	}
 

@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/tbeijen/workspace/internal/config"
+	"github.com/tbeijen/sworkspace/internal/config"
 )
 
 func Ls() error {
@@ -21,12 +21,12 @@ func Ls() error {
 			if len(args) >= 3 {
 				return lsRoles(args[1], args[2])
 			}
-			return fmt.Errorf("usage: workspace ls --roles <client> <env>")
+			return fmt.Errorf("usage: sworkspace ls --roles <client> <env>")
 		case "--clusters":
 			if len(args) >= 3 {
 				return lsClusters(args[1], args[2])
 			}
-			return fmt.Errorf("usage: workspace ls --clusters <client> <env>")
+			return fmt.Errorf("usage: sworkspace ls --clusters <client> <env>")
 		}
 	}
 

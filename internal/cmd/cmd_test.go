@@ -18,7 +18,7 @@ func testdataRoot(t *testing.T) string {
 
 func withRoot(t *testing.T) {
 	t.Helper()
-	t.Setenv("WORKSPACES_ROOT", testdataRoot(t))
+	t.Setenv("SWORKSPACE_ROOT", testdataRoot(t))
 }
 
 func captureStdout(t *testing.T, fn func()) string {
@@ -51,8 +51,8 @@ func TestSetEmitsExports(t *testing.T) {
 		`export WS_CLIENT="acme"`,
 		`export WS_ENV="staging"`,
 		`export WS_ROLE="ad"`,
-		`export __WS_VARS=`,
-		`export __WS_ACTIVE="acme/staging/ad"`,
+		`export __SWORKSPACE_VARS=`,
+		`export __SWORKSPACE_ACTIVE="acme/staging/ad"`,
 	}
 
 	for _, s := range mustContain {
@@ -97,7 +97,7 @@ func TestSetTooFewArgs(t *testing.T) {
 }
 
 func TestUnsetEmitsUnsets(t *testing.T) {
-	t.Setenv("__WS_VARS", "WS_CLIENT,WS_ENV,WS_ROLE,AWS_PROFILE")
+	t.Setenv("__SWORKSPACE_VARS", "WS_CLIENT,WS_ENV,WS_ROLE,AWS_PROFILE")
 
 	output := captureStdout(t, func() {
 		err := Unset()
@@ -111,8 +111,8 @@ func TestUnsetEmitsUnsets(t *testing.T) {
 		"unset WS_ENV",
 		"unset WS_ROLE",
 		"unset AWS_PROFILE",
-		"unset __WS_VARS",
-		"unset __WS_ACTIVE",
+		"unset __SWORKSPACE_VARS",
+		"unset __SWORKSPACE_ACTIVE",
 	}
 
 	for _, s := range mustContain {
@@ -123,7 +123,7 @@ func TestUnsetEmitsUnsets(t *testing.T) {
 }
 
 func TestUnsetNoVars(t *testing.T) {
-	t.Setenv("__WS_VARS", "")
+	t.Setenv("__SWORKSPACE_VARS", "")
 
 	output := captureStdout(t, func() {
 		err := Unset()
@@ -138,7 +138,7 @@ func TestUnsetNoVars(t *testing.T) {
 }
 
 func TestCurrentActive(t *testing.T) {
-	t.Setenv("__WS_ACTIVE", "acme/staging/ad")
+	t.Setenv("__SWORKSPACE_ACTIVE", "acme/staging/ad")
 
 	output := captureStdout(t, func() {
 		err := Current()
@@ -153,7 +153,7 @@ func TestCurrentActive(t *testing.T) {
 }
 
 func TestCurrentInactive(t *testing.T) {
-	t.Setenv("__WS_ACTIVE", "")
+	t.Setenv("__SWORKSPACE_ACTIVE", "")
 
 	output := captureStdout(t, func() {
 		err := Current()
@@ -177,7 +177,7 @@ func TestActivateZsh(t *testing.T) {
 
 	mustContain := []string{
 		"sw()",
-		"command workspace",
+		"command sworkspace",
 		"compdef _sw sw",
 		"_sw()",
 	}
@@ -205,7 +205,7 @@ func TestActivateNoArgs(t *testing.T) {
 
 func TestLsAll(t *testing.T) {
 	withRoot(t)
-	os.Args = []string{"workspace", "ls"}
+	os.Args = []string{"sworkspace", "ls"}
 
 	output := captureStdout(t, func() {
 		err := Ls()

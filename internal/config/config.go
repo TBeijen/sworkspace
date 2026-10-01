@@ -21,7 +21,7 @@ type Workspace struct {
 }
 
 func Root() string {
-	if r := os.Getenv("WORKSPACES_ROOT"); r != "" {
+	if r := os.Getenv("SWORKSPACE_ROOT"); r != "" {
 		return r
 	}
 	home, err := os.UserHomeDir()

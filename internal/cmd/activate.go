@@ -3,12 +3,12 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/tbeijen/workspace/internal/shell"
+	"github.com/tbeijen/sworkspace/internal/shell"
 )
 
 func Activate(args []string) error {
 	if len(args) < 1 {
-		return fmt.Errorf("usage: workspace activate <shell>")
+		return fmt.Errorf("usage: sworkspace activate <shell>")
 	}
 	switch args[0] {
 	case "zsh":
